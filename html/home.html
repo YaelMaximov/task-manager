@@ -1,18 +1,111 @@
 <!DOCTYPE html>
 <html>
-    <head></head>
-    <body>
-        <main>
-        </main>
 
-        <template id="sign-in">
-        </template>
-    
-        <template id="sign-up">
-        </template>
+<head>
+    <meta charset="UTF-8">
+    <title>spa page</title>
+    <meta name="viewport" content="width=device-width">
 
-        <template id="todo">
-            
-        </template>
-    </body>
+</head>
+
+<body>
+    <main>
+        <div id="content">
+            <link rel="stylesheet" href="../css/log_in.css">
+            <form id="login" class="container">
+                <div class="login-box">
+                    <h2>Login</h2>
+                    <form>
+                        <div class="input-group">
+                            <label for="username">Username:</label>
+                            <input type="text" id="username" name="username" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="password">Password:</label>
+                            <input type="password" id="password" name="password" required>
+                        </div>
+                        <button id="logInBtn" class="nav-link" class="form__button" type="submit" data-target="Todo">Log In</button>
+                    </form>
+                    <p>Don't have an account?<a data-target="Sign-Up" class="nav-link" href="#Sign-Up"
+                            id="linkCreateAccount">Sign Up</a></p>
+                </div>
+            </form>
+            <script src="../js/login.js"></script>
+        </div>
+    </main>
+
+
+    <template id="Login">
+        <link rel="stylesheet" href="../css/log_in.css">
+        <form id="login" class="container">
+            <div class="login-box">
+                <h2>Login</h2>
+                <form>
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button id="logInBtn" class="nav-link" class="form__button" type="submit" data-target="Todo">Log In</button>
+                </form>
+                <p>Don't have an account?<a data-target="Sign-Up" class="nav-link" href="#Sign-Up"
+                        id="linkCreateAccount">Sign Up</a></p>
+            </div>
+
+        </form>
+        <script src="../js/login.js"></script>
+
+    </template>
+
+    <template id="Sign-Up">
+        <link rel="stylesheet" href="../css/sign_up.css">
+        <div class="container">
+            <div class="signup-box">
+                <h2>Sign Up</h2>
+                <form id="signup-form">
+                    <div class="input-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <span id="password-strength"></span>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <p>Already have an account? <a data-target="Login" class="nav-link" href="#Login"
+                        id="linkCreateAccount"> Log In</a></p>
+
+            </div>
+        </div>
+        <script src="../js/todo.js"></script>
+    </template>
+
+
+    <template id="Todo">
+        <link rel="stylesheet" href="../css/todo.css">
+        <nav class="navbar">
+            <div class="account">Account</div>
+        </nav>
+        <div class="todo-input-grid">
+            <input placeholder="Todo name" class="js-name-input name-input">
+            <input type="date" class="js-due-date-input due-date-input">
+            <button onclick="
+                        addTodo();
+                    " class="add-todo-button">Add</button>
+            <div class="js-todo-list todo-grid"></div>
+        </div>
+        <script src="../js/todo.js"></script>
+    </template>
+</body>
+<script src="../js/spa.js"></script>
+
 </html>
