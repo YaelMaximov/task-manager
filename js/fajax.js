@@ -1,8 +1,8 @@
 class FXMLHttpRequest {
     /**
      * JSON format:
-     * 1. List of users [ users = []  ]
-     * 2.
+     * 1. List of users [ users = []  ] called users
+     * 2. List of user info called usersInfo
      *  \(￣︶￣*\)) SINGLE USER FORMAT: (*￣3￣)╭ 
      * objUser = 
      * username:
@@ -23,6 +23,7 @@ class FXMLHttpRequest {
 
     /**
      * Send GET:
+     * - when the user sign-up
      * - When user sign in
      * - Filtering:
      *      1. By date (today)
@@ -34,7 +35,9 @@ class FXMLHttpRequest {
      *      1. if username is not already in DB:
      *          a. GET from DB all username info  
      *          b. post (add) new (empty) user to DB
-     *      3. else: 
+     *      2. else:
+     *          a. currentUser will be this user
+     *          b. Get all his todo list 
      * 
      * Send PUT:
      * - Edits:
