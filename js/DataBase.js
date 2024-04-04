@@ -1,8 +1,7 @@
 class DataBase {
     constructor() {
-        let todoCounter = 1;
     }
-    //Get
+    //Get-sync
     userExist(username) {
         userList = JSON.parse(localStorage.getItem(users));
         if (userList.includes(username)) {
@@ -12,7 +11,7 @@ class DataBase {
             return false;
         }
     }
-    //Post
+    //Post-sync
     signUp(newUser) {
         // Retrieve existing user list from local storage
         let usersInfoJSON = localStorage.getItem('usersInfo');
@@ -31,7 +30,7 @@ class DataBase {
 
     }
 
-    //Post
+    //Post-sync
     addTodo(username, newTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -60,7 +59,7 @@ class DataBase {
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
     }
 
-    //Get
+    //Get-async
     logIn_getAllTodo(username) {
         // Retrieve the user list from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -85,6 +84,8 @@ class DataBase {
         return user.todo;
 
     }
+
+    //Get-async
     getTodoByKey(username, key, value) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -110,7 +111,8 @@ class DataBase {
 
         return filteredTodos;
     }
-    // Function to update a todo by id
+
+    // Put-sync
     updateTodo(username, idTodo, updatedTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -148,7 +150,7 @@ class DataBase {
         return true;
     }
 
-    // Function to delete a todo by id
+    // Delete-sync
     deleteTodo(username, idTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
