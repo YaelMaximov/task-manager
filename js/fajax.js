@@ -59,4 +59,32 @@ class FXMLHttpRequest {
      */
     
     // (╬▔皿▔)╯
+
+    //TODO - add definition to all class constructors
+    constructor() {
+        this._readyState = 0;
+        this._status = 0;
+        this._statusText = "";
+        this._responseText = null;
+        this._onreadystatechange = null;
+        this._data = null;
+    }
+
+    open(method, url) {
+        this._method = method;
+        this._url = url;
+        this._readyState = 1;
+    }
+
+    send(obj) {
+        this._data = obj;
+        this._readyState = 2;
+        const network = new Network();
+        network.send_to_server(this._method, this);
+    }
+
+    addEventListener(type, onreadystatechange) {
+        console.log(onreadystatechange);
+        this._onreadystatechange = onreadystatechange;
+    }
 }

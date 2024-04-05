@@ -2,17 +2,22 @@ class DataBase {
     constructor() {
         let todoCounter = 1;
     }
-    //Get
+
+    /**
+     * GET
+     * Check if user exists in the DB
+     * @param {*} username we want to check / find id exists
+     * @returns whether the user exists or not
+     */
     userExist(username) {
         userList = JSON.parse(localStorage.getItem(users));
-        if (userList.includes(username)) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (userList.includes(username))? true: false;
     }
-    //Post
+
+    /**
+     * POST
+     * @param {*} newUser new user that needs to be added to the DataBase
+     */
     signUp(newUser) {
         // Retrieve existing user list from local storage
         let usersInfoJSON = localStorage.getItem('usersInfo');
@@ -32,6 +37,12 @@ class DataBase {
     }
 
     //Post
+    /**
+     * 
+     * @param {*} username 
+     * @param {*} newTodo 
+     * @returns 
+     */
     addTodo(username, newTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -61,6 +72,11 @@ class DataBase {
     }
 
     //Get
+    /**
+     * 
+     * @param {*} username 
+     * @returns 
+     */
     logIn_getAllTodo(username) {
         // Retrieve the user list from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -85,6 +101,14 @@ class DataBase {
         return user.todo;
 
     }
+
+    /**
+     * 
+     * @param {*} username 
+     * @param {*} key 
+     * @param {*} value 
+     * @returns 
+     */
     getTodoByKey(username, key, value) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -110,7 +134,14 @@ class DataBase {
 
         return filteredTodos;
     }
-    // Function to update a todo by id
+    
+    /**
+     * Function to update a todo by id
+     * @param {*} username 
+     * @param {*} idTodo 
+     * @param {*} updatedTodo 
+     * @returns 
+     */
     updateTodo(username, idTodo, updatedTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
@@ -148,7 +179,12 @@ class DataBase {
         return true;
     }
 
-    // Function to delete a todo by id
+    /**
+     * Function to delete a todo by id
+     * @param {*} username 
+     * @param {*} idTodo 
+     * @returns 
+     */
     deleteTodo(username, idTodo) {
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
