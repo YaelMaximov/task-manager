@@ -18,7 +18,7 @@ class FXMLHttpRequest {
         this.readyState = 2;
         const netWork = new Network();
         let response = netWork.sendToServer(this.method, this);
-        //call the function that handles the response when the response is ready-callback
+        //call the function that handles the response when the response is ready-callbac
         this.onreadystatechange(response);
     }
     //there is a callback function that we get from the client code

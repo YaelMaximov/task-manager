@@ -18,18 +18,32 @@ class DataBase {
      * @param {*} newUser new user that needs to be added to the DataBase
      */
     signUp(newUser) {
-        // Retrieve existing user list from local storage
-        let usersInfoJSON = localStorage.getItem('usersInfo');
-        let usersInfo = [];
-
-        if (userListJSON) {
-            // If user list exists in local storage, parse it
-            usersInfo = JSON.parse(usersInfoJSON);
+        let usersJSON = localStorage.getItem('users');
+        let users;
+        if (usersJSON) {
+            // If users list exists in local storage, parse it
+            users = JSON.parse(usersJSON);
+            users.push(newUser);
         }
+        else{
+            //If this is the first user make new list with his username
+            users=[newUser.username];
+        }
+        localStorage.setItem('users', JSON.stringify(users));
+        
 
-        // Add the new user to the user list
-        usersInfo.push(newUser);
-
+    
+        // Retrieve existing users info list from local storage
+        let usersInfoJSON = localStorage.getItem('usersInfo');
+        let usersInfo;
+        if (usersInfoJSON) {
+            // If user info list exists in local storage, parse it
+            usersInfo = JSON.parse(usersInfoJSON);
+            usersInfo.push(newUser);
+        }
+        else{
+            usersInfo[newUser];
+        }
         // Save the updated user list back to local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
 
@@ -42,13 +56,15 @@ class DataBase {
      * @param {*} newTodo 
      * @returns 
      */
-    addTodo(username, newTodo) {
+    addTodo(newTodo) {
+        //Get current user
+        let username = localStorage.getItem("currentUser");
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
         if (!usersInfoJSON) {
             console.log("User info not found.");
-            return;
+            return false;
         }
 
         // Parse the userInfo JSON
@@ -59,15 +75,17 @@ class DataBase {
 
         if (userIndex === -1) {
             console.log("User not found.");
-            return;
+            return false;
         }
-        // Generate the unique idTodo using the counter
-        const idTodo = todoCounter++;
 
         // Add the new todo to the user's todo array
         usersInfo[userIndex].todo.push(newTodo);
         // Update userInfo in local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
+        return true;
+    }
+    login(username){
+        localStorage.setItem('currentUser', JSON.stringify(username));
     }
 
     //Get
@@ -76,13 +94,14 @@ class DataBase {
      * @param {*} username 
      * @returns 
      */
-    logIn_getAllTodo(username) {
+    getAllTodos() {
+        let username = localStorage.getItem("currentUser");
         // Retrieve the user list from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
         if (!usersInfoJSON) {
             console.log("User list not found.");
-            return [];
+            return false;
         }
 
         // Parse the user list JSON
@@ -93,7 +112,7 @@ class DataBase {
 
         if (!user) {
             console.log("User not found.");
-            return [];
+            return false;
         }
 
         // Return the todo list of the user
@@ -108,13 +127,14 @@ class DataBase {
      * @param {*} value 
      * @returns 
      */
-    getTodoByKey(username, key, value) {
+    getTodoByKey(data) {
+        let username = localStorage.getItem("currentUser");
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
         if (!usersInfoJSON) {
             console.log("User info not found.");
-            return [];
+            return false;
         }
 
         // Parse the userInfo JSON
@@ -125,11 +145,11 @@ class DataBase {
 
         if (!user) {
             console.log("User not found.");
-            return [];
+            return false;
         }
 
         // Filter todos based on the provided key and value
-        const filteredTodos = user.todo.filter(todo => todo[key] === value);
+        const filteredTodos = user.todo.filter(todo => todo[data[0]] === data[1]);
 
         return filteredTodos;
     }
@@ -141,7 +161,8 @@ class DataBase {
      * @param {*} updatedTodo 
      * @returns 
      */
-    updateTodo(username, idTodo, updatedTodo) {
+    updateTodo(updatedTodo) {
+        let username = localStorage.getItem("currentUser");
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
@@ -162,7 +183,7 @@ class DataBase {
         }
 
         // Find the todo with the given idTodo
-        const todoIndex = user.todo.findIndex(todo => todo.idTodo === idTodo);
+        const todoIndex = user.todo.findIndex(todo => todo.idTodo === updatedTodo.idTodo);
 
         if (todoIndex === -1) {
             console.log("Todo not found.");
@@ -184,7 +205,8 @@ class DataBase {
      * @param {*} idTodo 
      * @returns 
      */
-    deleteTodo(username, idTodo) {
+    deleteTodo(idTodo) {
+        let username = localStorage.getItem("currentUser");
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
