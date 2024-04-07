@@ -139,8 +139,6 @@ class Server {
 
     }
 
-
-
     put(req) {
         req.readyState = 3;
         if (checkWhatUrl(req.url) === 'updateTodo') {
