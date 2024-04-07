@@ -62,9 +62,11 @@
 
     <template id="Sign-Up">
         <link rel="stylesheet" href="../css/sign_up.css">
-        <div class="container">
+        
+        <form id="signUp" class="container">
             <div class="signup-box">
                 <h2>Sign Up</h2>
+                <div id="error"></div>
                 <form id="signup-form">
                     <div class="input-group">
                         <label for="email">Email:</label>
@@ -76,16 +78,19 @@
                     </div>
                     <div class="input-group">
                         <label for="password">Password:</label>
-                        <input type="password" id="password" name="password" required>
+                        <input type="password" id="password" name="password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,9}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 6 to 9 characters"
+                        required>
                         <span id="password-strength"></span>
                     </div>
-                    <button type="submit">Sign Up</button>
+                    <button id="signUpBtn" type="submit">Sign Up</button>
                 </form>
                 <p>Already have an account? <a data-target="Login" class="nav-link" href="#Login"
                         id="linkCreateAccount"> Log In</a></p>
 
             </div>
-        </div>
+        </form>
         <script src="../js/todo.js"></script>
     </template>
 
