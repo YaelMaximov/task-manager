@@ -1,9 +1,13 @@
 class DataBase {
+    /**
+     * Empty constructor for DataBase
+     */
     constructor() {
+        // TODO - if there is nothing in local storage, we should create it!!
     }
 
     /**
-     * GET
+     * GET method:
      * Check if user exists in the DB
      * @param {*} username we want to check / find id exists
      * @returns whether the user exists or not
@@ -14,24 +18,38 @@ class DataBase {
     }
 
     /**
-     * POST
+     * Checks if the psw and username are the same
+     * @param {*} credentials the username and psw of the current user
+     * @returns if username and psw are correct
+     */
+    checkPsw(credentials) {
+        let usersInfoJSON = localStorage.getItem('usersInfo');
+        let usersInfo;
+        if (usersInfoJSON) {
+            usersInfo = JSON.parse(usersInfoJSON);
+            const user = usersInfo.find(user => user.username == credentials[0] && user.psw == credentials[1]);
+            return user? true: false;
+        }
+    }
+
+    /**
+     * POST method:
+     * Add a new user to the DB
      * @param {*} newUser new user that needs to be added to the DataBase
      */
     signUp(newUser) {
         let usersJSON = localStorage.getItem('users');
-        let users;
+        let users; 
         if (usersJSON) {
             // If users list exists in local storage, parse it
             users = JSON.parse(usersJSON);
             users.push(newUser);
         }
-        else{
-            //If this is the first user make new list with his username
-            users=[newUser.username];
+        else {
+            // If this is the first user make new list with his username
+            users = [newUser.username];
         }
         localStorage.setItem('users', JSON.stringify(users));
-        
-
     
         // Retrieve existing users info list from local storage
         let usersInfoJSON = localStorage.getItem('usersInfo');
@@ -41,28 +59,35 @@ class DataBase {
             usersInfo = JSON.parse(usersInfoJSON);
             usersInfo.push(newUser);
         }
-        else{
-            usersInfo[newUser];
+        else {
+            usersInfo = [newUser];
         }
         // Save the updated user list back to local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
-
+    }
+    
+    // TODO - do we need to check if user is actually in the database? might be in server that it is checked but that might not be right...
+    /**
+     * POST
+     * @param {*} username 
+     */
+    login(username) {
+        localStorage.setItem('currentUser', JSON.stringify(username));
     }
 
-    //Post
     /**
-     * 
+     * POST
      * @param {*} username 
      * @param {*} newTodo 
      * @returns 
      */
     addTodo(newTodo) {
-        //Get current user
+        // Get current user
         let username = localStorage.getItem("currentUser");
         // Retrieve userInfo from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
-        if (!usersInfoJSON) {
+        if (!usersInfoJSON) { // userInfo doesn't exist
             console.log("User info not found.");
             return false;
         }
@@ -73,24 +98,22 @@ class DataBase {
         // Find the user with the given username
         const userIndex = usersInfo.findIndex(user => user.username === username);
 
-        if (userIndex === -1) {
+        if (userIndex === -1) { // user is not in DB
             console.log("User not found.");
             return false;
         }
 
         // Add the new todo to the user's todo array
+        const len = usersInfo[userIndex].todo.length();
+        newTodo.idTodo = len;
         usersInfo[userIndex].todo.push(newTodo);
         // Update userInfo in local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
         return true;
     }
-    login(username){
-        localStorage.setItem('currentUser', JSON.stringify(username));
-    }
 
-    //Get
     /**
-     * 
+     * GET
      * @param {*} username 
      * @returns 
      */
@@ -117,11 +140,10 @@ class DataBase {
 
         // Return the todo list of the user
         return user.todo;
-
     }
 
     /**
-     * 
+     * GET
      * @param {*} username 
      * @param {*} key 
      * @param {*} value 
@@ -149,12 +171,13 @@ class DataBase {
         }
 
         // Filter todos based on the provided key and value
-        const filteredTodos = user.todo.filter(todo => todo[data[0]] === data[1]);
-
+        const filteredTodos = user.todo.filter(todo => todo.data[0] === data[1]);
+        // TODO - make sure the filter filters by the value (data[1]) of key (data[0])
         return filteredTodos;
     }
     
     /**
+     * PUT
      * Function to update a todo by id
      * @param {*} username 
      * @param {*} idTodo 
@@ -187,11 +210,12 @@ class DataBase {
 
         if (todoIndex === -1) {
             console.log("Todo not found.");
-            return false;
+            return "todo id not found";
         }
 
         // Update the todo with the provided updatedTodo
         user.todo[todoIndex] = { ...user.todo[todoIndex], ...updatedTodo };
+        // TODO - make sure this notation for updating todo (tasks) works!!!
 
         // Update userInfo in local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
@@ -200,6 +224,7 @@ class DataBase {
     }
 
     /**
+     * DELETE
      * Function to delete a todo by id
      * @param {*} username 
      * @param {*} idTodo 
@@ -231,7 +256,7 @@ class DataBase {
 
         if (todoIndex === -1) {
             console.log("Todo not found.");
-            return false;
+            return "todo id not found";
         }
 
         // Remove the todo from the user's todo array
@@ -242,5 +267,4 @@ class DataBase {
 
         return true;
     }
-
 }

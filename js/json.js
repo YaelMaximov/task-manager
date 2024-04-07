@@ -1,9 +1,9 @@
     /**
      * JSON format:
      * 1. List of users [ users = []  ] called users
-     * 2. List of user info called usersInfo
+     * 2. List of users' info called usersInfo
      *  \(￣︶￣*\)) SINGLE USER FORMAT: (*￣3￣)╭ 
-     * objUser = 
+     * objUser = {
      * username:
      * email:
      * password:
@@ -16,7 +16,8 @@
      *              comments: ""
      *          }, 
      *       ]
-     * 
+     * todoLen: Number
+     * }
      * 3. currentUser: username
      */
 
