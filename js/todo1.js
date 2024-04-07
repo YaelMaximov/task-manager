@@ -16,24 +16,5 @@ const handleResponse = (callback) => {
 
     request.open('GET',);
     request.send();
+    
 }
-    //Get-async
-    logIn_getAllTodo(username) {
-
-
-    }
-
-    //Get-async
-    getTodoByKey(username, key, value) {
-
-    }
-
-    // Put-sync
-    updateTodo(username, idTodo, updatedTodo) {
-
-    }
-
-    // Delete-sync
-    deleteTodo(username, idTodo) {
-
-    }
