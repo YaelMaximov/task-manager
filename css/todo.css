@@ -1,12 +1,14 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f2f2f2; /* Light gray background */
+    /* background-color: #f2f2f2; Light gray background */
     margin: 0; /* Remove default body margin */
+    background-color: #001524;
+    color: #e5e5e5;
 }
 
 .navbar {
     width: 100%;
-    background-color: #333333; /* Dark background color */
+    background-color: #0a5669; /* Dark background color */
     color: white; /* Light text color */
     padding: 10px 20px; /* Padding around content */
     box-sizing: border-box; /* Include padding in width */
@@ -24,9 +26,46 @@ body {
     height: 40px; /* Adjust size as needed */
 }
 
-.container {
-   
-    padding: 80px; /* Add space around inputs */
+/* filter buttons styling */
+
+button span {
+    align-items: center;
+}
+
+.filter-defined {
+    background-color: #fb8500;
+}
+.filter-in-progress {
+    background-color: #9d0208;
+}
+.filter-done {
+    background-color: #e5e5e5;
+}
+.filter-date {
+    background-color: #3e6259;
+}
+.add-todo {
+    background-color: #5b8266;
+}
+
+/**/
+/* .container {
+    padding: 80px;
+} */
+/* individual task styling */
+.js-todo-list {
+    display:flex;
+    flex-direction: column;
+    border-width: 5px;
+    border-color: rgb(202, 19, 132);
+    border-radius: 25px;
+}
+.column-left {
+    flex-direction: column;
+}
+.column-right {
+    flex-direction: row;
+    align-items: center;
 }
 
 .todo-input-grid {
@@ -44,7 +83,7 @@ body {
     font-size: 15px;
     padding: 8px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 25px;
     width: 100%; /* Make inputs fill the available space */
     box-sizing: border-box; /* Include padding and border in width */
 }
@@ -81,3 +120,4 @@ body {
 .delete-todo-button:hover {
     background-color: #972826; /* Darker red on hover */
 }
+
