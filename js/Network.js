@@ -15,7 +15,7 @@ class Network {
      */
     sendToServer(method, request) {
         let response;
-        response = newServer.methodRequest(method, request);
+        response = this.server.methodRequest(method, request);
         return response;
     }
 }

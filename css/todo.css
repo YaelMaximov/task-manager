@@ -18,7 +18,7 @@ body {
 .account {
     font-size: 20px;
     /* Assuming your account logo is a background image */
-    background-image: url('your-account-logo.png');
+    /* background-image: url('your-account-logo.png'); */
     background-size: contain;
     width: 40px; /* Adjust size as needed */
     height: 40px; /* Adjust size as needed */

@@ -13,7 +13,11 @@ class DataBase {
      * @returns whether the user exists or not
      */
     userExist(username) {
-        userList = JSON.parse(localStorage.getItem(users));
+        if(localStorage.getItem("users") === null){
+            return false;
+        }
+
+        let userList = JSON.parse(localStorage.getItem('users'));
         return (userList.includes(username))? true: false;
     }
 

@@ -79,19 +79,20 @@
                     <div class="input-group">
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" 
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,9}"
-                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 6 to 9 characters"
+                        
                         required>
+                        <!-- pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,9}"
+                        title="Must contain at least one  number and one uppercase and lowercase letter, and at least 6 to 9 characters" -->
                         <span id="password-strength"></span>
                     </div>
-                    <button id="signUpBtn" type="submit">Sign Up</button>
+                    <button id="signUpBtn" type="submit" data-target="Login" class="nav-link">Sign Up</button>
                 </form>
                 <p>Already have an account? <a data-target="Login" class="nav-link" href="#Login"
                         id="linkCreateAccount"> Log In</a></p>
 
             </div>
         </form>
-        <script src="../js/todo.js"></script>
+        <script src="../js/signup.js"></script>
     </template>
 
 
@@ -153,10 +154,10 @@
     </template>
     
     <script src="../js/spa.js"></script>
-    <!-- <script src="../js/DataBase.js"></script>
+    <script src="../js/DataBase.js"></script>
     <script src="../js/fajax.js"></script>
     <script src="../js/Network.js"></script>
-    <script src="../js/Server.js"></script> -->
+    <script src="../js/Server.js"></script>
 </body>
 
 

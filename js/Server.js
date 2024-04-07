@@ -44,7 +44,7 @@ class Server {
             if (req.data) {
                 // data=user object
                 if (!this.dateBase.userExist(req.data.username)) {
-                    response = this.dateBase.signUp(req.data);
+                    this.dateBase.signUp(req.data);
                     req.status = 200;
                     req.statusText = "OK";
                 } else {
