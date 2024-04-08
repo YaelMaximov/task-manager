@@ -31,7 +31,7 @@ class DataBase {
         let usersInfo;
         if (usersInfoJSON) {
             usersInfo = JSON.parse(usersInfoJSON);
-            const user = usersInfo.find(user => user.username == credentials[0] && user.psw == credentials[1]);
+            const user = usersInfo.find(user => user.username == credentials[0] && user.password == credentials[1]);
             return user? true: false;
         }
     }
@@ -47,7 +47,7 @@ class DataBase {
         if (usersJSON) {
             // If users list exists in local storage, parse it
             users = JSON.parse(usersJSON);
-            users.push(newUser);
+            users.push(newUser.username);
         }
         else {
             // If this is the first user make new list with his username

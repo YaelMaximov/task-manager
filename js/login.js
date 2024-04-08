@@ -22,11 +22,11 @@ function login(e) {
             app.nav(e);
         }
         else if(xhr.readyState === 4 && xhr.status === 409){
-            document.getElementById('error1').textContent = "user does not exist";
+            document.getElementById('error-login').textContent = "user does not exist";
 
         }
         else if(xhr.readyState === 4 && xhr.status === 401){
-            document.getElementById('error1').textContent = "wrong password";
+            document.getElementById('error-login').textContent = "wrong password";
 
         }
 

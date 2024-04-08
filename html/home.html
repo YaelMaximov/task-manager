@@ -7,6 +7,11 @@
     <meta name="viewport" content="width=device-width">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 </head>
 
@@ -14,6 +19,7 @@
     <main>
         <div id="content">
             <link rel="stylesheet" href="../css/log_in.css">
+            <div id="error-login"></div>
             <form id="login" class="container">
                 <div class="login-box">
                     <h2>Login</h2>
@@ -100,8 +106,10 @@
 
 
     <template id="Todo">
-        <link rel="stylesheet" href="../css/todo.css">
-        <nav class="navbar">
+        <link rel="stylesheet" href="../css/page.css">
+        <link rel="stylesheet" href="../css/try.css">
+        <!-- <link rel="stylesheet" href="../css/todo.css"> -->
+        <body>
             <header class="header">
                 <div class="account">Account
                     <!-- current username should be here -->
@@ -118,74 +126,20 @@
                     <button class="filter-btn defined-filter">Defined</button>
                     <button class="filter-btn in-progress-filter">In Progress</button>
                     <button class="filter-btn done-filter">Done</button>
-                    <button class="filter-btn add-task-btn"><span class="material-symbols-outlined">
+                    <button class="filter-btn add-task-btn" onclick="displayTaskTemplate()"><span class="material-symbols-outlined">
                         add
                     </span></button>
                 </div>
             </section>
-        </nav>
-        <div class="todo-input-grid">
-            <!-- <input type="date" class="js-due-date-input due-date-input">
-                <button onclick="
-                        addTodo();
-                    " class="add-todo-button">Add</button> -->
-            <!-- <input placeholder="Todo name" class="js-name-input name-input">
-            <input type="date" class="js-due-date-input due-date-input">
-            <button onclick="
-                        addTodo();
-                    " class="add-todo-button">Add</button> -->
-
-            <!-- right side nav -->
-
-            <!-- display tasks (grid) ==> task layout -->
-            <div class="js-todo-list todo-grid">
-                <div class="column column-left">
-                    <input placeholder="Todo name" class="js-name-input name-input" readonly>
-                    <input type="date" class="js-due-date-input due-date-input" >
-                    <textarea name="" id="task-comments" cols="15" rows="5"></textarea>
-                </div>
-                <div class="column column-right">
-                    <!-- same style for all buttons here -->
-                    <button class="delete">
-                        <!-- 
-                            - trash can image - google icons
-                            - onclick even listener
-                        -->
-                        <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </button>
-                    <button class="edit">
-                        <!--
-                            - pencil image - google icons
-                            - onclick even listener
-                        -->
-                        <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                            edit
-                        </span>
-                    </button>
-                    <div class="status">
-                        <button class="defined">
-                            <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                                contract
-                            </span>
-                        </button>
-                        <button class="in-progress">
-                            <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                                local_shipping
-                            </span>
-                        </button>
-                        <button class="done">
-                            <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                                assignment_turned_in
-                            </span>
-                        </button>
-                    </div>
-                </div>
-
+        
+            <!-- Your Todo Content Goes Here -->
+            
+            <div class='todo-container'>
+                <!-- Add more tasks as needed -->
             </div>
-        </div>
-        <!-- <script src="../js/todo.js"></script> -->
+            <!-- <script src="../js/page.js"></script>  -->
+            <script src="../js/todo.js"></script> 
+        </body>
     </template>
     
     <script src="../js/spa.js"></script>

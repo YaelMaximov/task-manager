@@ -66,7 +66,7 @@ class Server {
                 // 2. psw not correct
                 if (this.dateBase.userExist(req.data[0])) {
                     if (this.dateBase.checkPsw(req.data)) {
-                        response = dateBase.login(req.data[0]);
+                        this.response = this.dateBase.login(req.data[0]);
                         req.status = 200;
                         req.statusText = "OK";
                     } else {
@@ -88,7 +88,7 @@ class Server {
         else if (checkWhatUrl(request.url) === 'addTodo') {
             if (req.data) {
                 //data=Todo (task) object
-                response = dateBase.addTodo(req.data);
+                this.response = this.dateBase.addTodo(req.data);
                 if (response) {
                     req.status = 200;
                     req.statusText = "OK";
@@ -140,7 +140,7 @@ class Server {
             // return req;
         }
         else if (checkWhatUrl(req.url) === 'getAllTodos') {
-            response = dateBase.getAllTodos();
+            this.response  = this.dateBase.getAllTodos();
             if (response || response == []) {
                 // TODO - check that this only works when response is an empty array [] or has todos inside it
                 req.status = 200;
@@ -159,7 +159,7 @@ class Server {
                 //data=[key, value]
                 // key - attribute in a task (date, status...)
                 // value - specific instance of key
-                response = this.dateBase.getTodoByKey(req.data);
+                this.response  = this.dateBase.getTodoByKey(req.data);
                 if (response) {
                     req.status = 200;
                     req.statusText = "OK";
@@ -198,7 +198,7 @@ class Server {
         if (checkWhatUrl(req.url) === 'updateTodo') {
             if (req.data) {
                 // data=updated todo object,it will find the idTodo from the object
-                response = dateBase.updateTodo(req.data);
+                this.response  = this.dateBase.updateTodo(req.data);
                 if (response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {
@@ -240,7 +240,7 @@ class Server {
         if (checkWhatUrl(req.url) === 'deleteTodo') {
             if (req.data) {
                 //data=the idTodo
-                response = dateBase.deleteTodo(req.data.idTodo);
+                this.response  = this.dateBase.deleteTodo(req.data.idTodo);
                 if (response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {

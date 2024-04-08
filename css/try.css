@@ -36,6 +36,11 @@
     width: 100%;
     padding: 0;
     outline: none;
+    width: 100%; /* Ensure it takes up full width of parent */
+    max-width: 100%; /* Ensure it doesn't exceed parent's width */
+    height: 100%; /* Ensure it takes up full height of parent */
+    max-height: 100%; /* Ensure it doesn't exceed parent's height */
+    box-sizing: border-box;
 }
 
 .task__date {
