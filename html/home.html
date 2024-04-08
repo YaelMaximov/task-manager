@@ -42,7 +42,8 @@
         <form id="login" class="container">
             <div class="login-box">
                 <h2>Login</h2>
-                <form>
+                <div id="error-login"></div>
+                <form id="login-form">
                     <div class="input-group">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required>
@@ -68,7 +69,7 @@
         <form id="signUp" class="container">
             <div class="signup-box">
                 <h2>Sign Up</h2>
-                <div id="error"></div>
+                <div id="error-signup"></div>
                 <form id="signup-form">
                     <div class="input-group">
                         <label for="email">Email:</label>

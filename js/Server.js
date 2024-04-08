@@ -59,7 +59,7 @@ class Server {
             // req.readyState = 4; // finished 
             // return req;
         }
-        else if (checkWhatUrl(request.url) === 'login') {
+        else if (checkWhatUrl(req.url) === 'login') {
             if (req.data) {
                 //data=[username, psw]
                 // 1. if user doesn't exist

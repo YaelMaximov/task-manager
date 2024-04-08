@@ -1,8 +1,8 @@
 document.querySelector('#signUpBtn').addEventListener('click', createUser);
 
 function createUser(e){
+    e.preventDefault();
     let form = document.getElementById('signup-form');
-    // let error=document.getElementById('error');
     //checkValidity function that checks the inputs passed the conditions in the html
     let inputs=form.checkValidity();
     if(!inputs){
@@ -36,7 +36,7 @@ function createUser(e){
         else
         {
             console.log(xhr.status )
-            document.getElementById('error').textContent = "The mail is already exist";
+            document.getElementById('error-signup').textContent = "user already exist";
         }
         
     });
