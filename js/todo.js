@@ -14,6 +14,26 @@ const todoList1 = [
         comments: "hello"
     }
 ]; 
+document.addEventListener('DOMContentLoaded', function() {
+    let xhr = new FXMLHttpRequest();
+    let url = "getAllTodos";
+    xhr.open('GET', `https://client/${url}`);
+    xhr.addEventListener('load', (response) => {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200){
+            todoList1=xhr.responseText;
+        }
+        else if(xhr.readyState === 4 && xhr.status === 409){
+            document.getElementById('error-todo').textContent = "Todo list not found";
+
+        }
+
+    });
+    xhr.send("");
+});
+
+
+
 // render tasks
 renderTodoList();
 
@@ -110,8 +130,8 @@ function displayTaskTemplate() {
             </div>
             <div class='task__details'>
                 <!-- Task details -->
-                <input type="text" class="task__title" placeholder="Title" value="">
-                <input type="date" class="task__date" value="">
+                <input type="text" class="task__title" placeholder="Title" value="" required>
+                <input type="date" class="task__date" value="" required>
                 <textarea class="task__text" rows="4">Task details go here...</textarea value="">
             </div>
             <div class="task__buttons">
@@ -147,7 +167,37 @@ function editTask() {
 
 // for individual tasks:
 // event listener - click defined
-function taskDefined() {
+function taskIsDefined() {
+    let xhr = new FXMLHttpRequest();
+    let url = "addTodo";
+    let titleV=document.getElementById('task__title').value;
+    let dateV=document.getElementById('task__date').value;
+    let commentsV=document.getElementById('task__text').value;
+
+    xhr.open('POST', `https://client/${url}`);
+    let task=  {
+        idTodo: NaN ,
+        title: titleV,
+        status: "Defined",
+        date: dateV,
+        comments: commentsV
+    }
+    xhr.addEventListener('load', (response) => {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200){
+            todoList1.push(task);
+            titleV.disabled=true;
+            dateV.disabled=true;
+            commentsV.disabled=true;
+        }
+        else if(xhr.readyState === 4 && xhr.status === 401){
+            document.getElementById('error-todo').textContent = xhr.statusText;
+
+        }
+    });
+    xhr.send(task);
+
+
 
 }
 // event listener - click inprogress
