@@ -102,48 +102,27 @@
     <template id="Todo">
         <link rel="stylesheet" href="../css/todo.css">
         <nav class="navbar">
-            <div class="account">Account
-                <!-- current username should be here -->
-                <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                    person
-                </span>
-            </div>
-            <!-- three color options for status -->
-            <!-- <div class="color-map">
-                <h3 class="colors"></h3>
-                <h3 class="colors"></h3>
-                <h3 class="colors"></h3>
-            </div> -->
+            <header class="header">
+                <div class="account">Account
+                    <!-- current username should be here -->
+                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
+                        person
+                    </span>
+                </div>
+            </header>
         
-            <div class="operations">
-                <button class="add-todo">
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        add_task
-                    </span>
-                </button>
-                <button class="filter-date" title="Date">
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        calendar_today
-                    </span>
-                </button>
-            </div>
-            <div class="filters">
-                <button class="filter-defined" title="Defined">
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        contract
-                    </span>
-                </button>
-                <button class="filter-in-progress" title="In Progress">
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        local_shipping
-                    </span>
-                </button>
-                <button class="filter-done" title="Done">
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        assignment_turned_in
-                    </span>
-                </button>
-            </div>
+            <section class="filters-section">
+                <div class="container">
+                    <h2 class="filters-title">Filters</h2>
+                    <input class="filter-btn date-filter" type="date" class="task__date">
+                    <button class="filter-btn defined-filter">Defined</button>
+                    <button class="filter-btn in-progress-filter">In Progress</button>
+                    <button class="filter-btn done-filter">Done</button>
+                    <button class="filter-btn add-task-btn"><span class="material-symbols-outlined">
+                        add
+                    </span></button>
+                </div>
+            </section>
         </nav>
         <div class="todo-input-grid">
             <!-- <input type="date" class="js-due-date-input due-date-input">

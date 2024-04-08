@@ -95,3 +95,15 @@ body {
     border: 1px solid #ddd;
     border-radius: 5px;
 }
+
+#defined-border {
+    border-color: #df812a;
+}
+
+#in-progress-border {
+    border-color: #1c8470;
+}
+
+#done-border {
+    border-color: #6e0707;
+}
