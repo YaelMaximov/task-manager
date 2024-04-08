@@ -6,7 +6,7 @@
     <title>Todo App</title>
     <link rel="stylesheet" href="../css/page.css">
     <link rel="stylesheet" href="../css/try.css">
-    <link rel="stylesheet" href="../css/task.css">
+    <!-- <link rel="stylesheet" href="../css/task.css"> -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&display=swap" rel="stylesheet">
@@ -25,15 +25,14 @@
 
     <section class="filters-section">
         <div class="container">
-            
             <h2 class="filters-title">Filters</h2>
             <input class="filter-btn date-filter" type="date" class="task__date">
             <button class="filter-btn defined-filter">Defined</button>
             <button class="filter-btn in-progress-filter">In Progress</button>
             <button class="filter-btn done-filter">Done</button>
-            <button class="filter-btn add-task-btn"><span class="material-symbols-outlined">
+            <button class="filter-btn add-task-btn" onclick="displayTaskTemplate()"><span class="material-symbols-outlined">
                 add
-                </span></button>
+            </span></button>
         </div>
     </section>
 
@@ -45,46 +44,42 @@
             <div class='task__buttons'>
                 <!-- Buttons -->
                 <div class="status">
-                    <button class="defined" title="defined">
+                    <button class="defined" title="defined" onclick="taskDefined()">
                         <span class="material-symbols-outlined">
                             checkbook
                             </span>
                     </button>
-                    <button class="in-progress" title="in-progress">
+                    <button class="in-progress" title="in-progress" onclick="taskInProgress()">
                         <span class="material-symbols-outlined">
                             network_check
                             </span>
                     </button>
-                    <button class="done" title="done">
+                    <button class="done" title="done" onclick="taskDone()">
                         <span class="material-symbols-outlined">
                             done
                             </span>
                     </button>
                 </div>
-                
             </div>
             <div class='task__details'>
                 <!-- Task details -->
-                <input type="text" class="task__title" value="Title">
+                <input type="text" class="task__title" placeholder="Title">
                 <input type="date" class="task__date">
                 <textarea class="task__text" rows="4">Task details go here...</textarea>
-                
             </div>
             <div class="task__buttons">
                 <div class="task_change">
-                    <button class="delete">
+                    <button class="delete" onclick="deleteTask()">
                         <span class="material-symbols-outlined">
                             delete
                         </span>
-                        <!-- <span>delete</span> -->
                     </button>
     
-                    <button class="edit">
+                    <button class="edit" onclick="editTask()">
                         <span class="material-symbols-outlined">
                             edit
                         </span>
                     </button>
-                    
                 </div>
             </div>
         </div>
@@ -96,6 +91,7 @@
 
         <!-- Add more tasks as needed -->
     </div>
-    <script src="../js/page.js"></script> 
+    <!-- <script src="../js/page.js"></script>  -->
+    <script src="../js/todo.js"></script> 
 </body>
 </html>
