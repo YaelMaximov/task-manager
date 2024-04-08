@@ -19,21 +19,28 @@
         <div class='task__buttons'>
             <!-- Buttons -->
             <div class="status">
-                <button class="defined">
-                    <span>defined</span>
+                <button class="defined" title="defined">
+                    <span class="material-symbols-outlined">
+                        checkbook
+                        </span>
                 </button>
-                <button class="in-progress">
-                    <span>In progress</span>
+                <button class="in-progress" title="in-progress">
+                    <span class="material-symbols-outlined">
+                        network_check
+                        </span>
                 </button>
-                <button class="done">
-                    <span>Done</span>
+                <button class="done" title="done">
+                    <span class="material-symbols-outlined">
+                        done
+                        </span>
                 </button>
             </div>
-            <input type="date" class="task__date">
+            
         </div>
         <div class='task__details'>
             <!-- Task details -->
             <input type="text" class="task__title" value="Title">
+            <input type="date" class="task__date">
             <textarea class="task__text" rows="4">Task details go here...</textarea>
             
         </div>
