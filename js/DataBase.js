@@ -86,31 +86,32 @@ class DataBase {
      * @returns 
      */
     addTodo(newTodo) {
-        // Get current user
         let username = localStorage.getItem("currentUser");
-        // Retrieve userInfo from local storage
+        // Retrieve the user list from local storage
         const usersInfoJSON = localStorage.getItem('usersInfo');
 
-        if (!usersInfoJSON) { // userInfo doesn't exist
-            console.log("User info not found.");
+        if (!usersInfoJSON) {
+            console.log("User list not found.");
             return false;
         }
 
-        // Parse the userInfo JSON
-        let usersInfo = JSON.parse(usersInfoJSON);
+        // Parse the user list JSON
+        const usersInfo = JSON.parse(usersInfoJSON);
+        username = JSON.parse(username);
+
 
         // Find the user with the given username
-        const userIndex = usersInfo.findIndex(user => user.username === username);
+        const user = usersInfo.find(user => user.username === username);
 
-        if (userIndex === -1) { // user is not in DB
+        if (!user) {
             console.log("User not found.");
             return false;
         }
 
         // Add the new todo to the user's todo array
-        const len = usersInfo[userIndex].todo.length();
-        newTodo.idTodo = len;
-        usersInfo[userIndex].todo.push(newTodo);
+        // const len = usersInfo[userIndex].todo.length();
+        // newTodo.idTodo = len;
+        user.todo.push(newTodo);
         // Update userInfo in local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
         return true;
@@ -133,6 +134,7 @@ class DataBase {
 
         // Parse the user list JSON
         const usersInfo = JSON.parse(usersInfoJSON);
+        username = JSON.parse(username);
 
         // Find the user with the given username
         const user = usersInfo.find(user => user.username === username);
@@ -200,6 +202,7 @@ class DataBase {
 
         // Parse the userInfo JSON
         let usersInfo = JSON.parse(usersInfoJSON);
+        username = JSON.parse(username);
 
         // Find the user with the given username
         const user = usersInfo.find(user => user.username === username);
@@ -246,6 +249,7 @@ class DataBase {
 
         // Parse the userInfo JSON
         let usersInfo = JSON.parse(usersInfoJSON);
+        username = JSON.parse(username);
 
         // Find the user with the given username
         const user = usersInfo.find(user => user.username === username);

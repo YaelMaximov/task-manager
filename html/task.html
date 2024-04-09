@@ -22,46 +22,51 @@
                 <button class="defined" title="defined">
                     <span class="material-symbols-outlined">
                         checkbook
-                        </span>
+                    </span>
                 </button>
                 <button class="in-progress" title="in-progress">
                     <span class="material-symbols-outlined">
                         network_check
-                        </span>
+                    </span>
                 </button>
                 <button class="done" title="done">
                     <span class="material-symbols-outlined">
                         done
-                        </span>
+                    </span>
                 </button>
             </div>
-            
+
         </div>
         <div class='task__details'>
+            <div class="task__buttons task_change">
+                <button class="delete" title="delete">
+                    <span class="material-symbols-outlined">
+                        delete
+                    </span>
+                </button>
+
+                <button class="edit" title="edit">
+                    <span class="material-symbols-outlined">
+                        edit
+                    </span>
+                </button>
+                <button class="edited ok" title="save changes" display="true"><span class="material-symbols-outlined">
+                    check_circle
+                    </span></button>
+                <button class="edited cancel" title="cancle" hidden><span class="material-symbols-outlined">
+                    cancel
+                    </span></button>
+            </div>
             <!-- Task details -->
             <input type="text" class="task__title" value="Title">
             <input type="date" class="task__date">
             <textarea class="task__text" rows="4">Task details go here...</textarea>
             
-        </div>
-        <div class="task__buttons">
-            <div class="task_change">
-                <button class="delete">
-                    <span class="material-symbols-outlined">
-                        delete
-                    </span>
-                    <!-- <span>delete</span> -->
-                </button>
 
-                <button class="edit">
-                    <span class="material-symbols-outlined">
-                        edit
-                    </span>
-                </button>
-                
-            </div>
         </div>
+
     </div>
+
 
 </body>
 

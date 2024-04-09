@@ -85,11 +85,11 @@ class Server {
             // req.readyState = 4; // finished
             // return req;
         }
-        else if (checkWhatUrl(request.url) === 'addTodo') {
+        else if (checkWhatUrl(req.url) === 'addTodo') {
             if (req.data) {
                 //data=Todo (task) object
                 this.response = this.dateBase.addTodo(req.data);
-                if (response) {
+                if (this.response) {
                     req.status = 200;
                     req.statusText = "OK";
                 }
@@ -141,15 +141,16 @@ class Server {
         }
         else if (checkWhatUrl(req.url) === 'getAllTodos') {
             this.response  = this.dateBase.getAllTodos();
-            if (response || response == []) {
+            //|| this.response == []
+            if (this.response ) {
                 // TODO - check that this only works when response is an empty array [] or has todos inside it
                 req.status = 200;
                 req.statusText = "OK";
-                req.responseText = response;
+                req.responseText = this.response;
             }
             else {
-                request.status = 401;
-                request.statusText = "Unauthorized";
+                req.status = 401;
+                req.statusText = "Unauthorized";
             }
             // req.readyState = 4; // finished
             // return req;
@@ -160,16 +161,16 @@ class Server {
                 // key - attribute in a task (date, status...)
                 // value - specific instance of key
                 this.response  = this.dateBase.getTodoByKey(req.data);
-                if (response) {
+                if (this.response) {
                     req.status = 200;
                     req.statusText = "OK";
-                    req.responseText = response;
+                    req.responseText = this.response;
                     // TODO - look at returned filtered todo list in console
-                    console.log(response); 
+                    console.log(this.response); 
                 }
                 else {
-                    request.status = 401;
-                    request.statusText = "Unauthorized";
+                    req.status = 401;
+                    req.statusText = "Unauthorized";
                 }
             }
             else {
@@ -199,7 +200,7 @@ class Server {
             if (req.data) {
                 // data=updated todo object,it will find the idTodo from the object
                 this.response  = this.dateBase.updateTodo(req.data);
-                if (response) {
+                if (this.response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {
                         req.status = 404;
@@ -240,8 +241,8 @@ class Server {
         if (checkWhatUrl(req.url) === 'deleteTodo') {
             if (req.data) {
                 //data=the idTodo
-                this.response  = this.dateBase.deleteTodo(req.data.idTodo);
-                if (response) {
+                this.response  = this.dateBase.deleteTodo(req.data);
+                if (this.response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {
                         req.status = 404;

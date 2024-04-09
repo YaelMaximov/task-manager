@@ -4,7 +4,8 @@
     padding: 1rem;
     border-radius: 8px;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
+    min-width: 300px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
@@ -30,18 +31,21 @@
 }
 
 .task__text {
+    border: 1px solid #ccc;
     margin-bottom: 10px;
     border: none;
     background: none;
     width: 100%;
     padding: 0;
     outline: none;
+    resize: none;
     width: 100%; /* Ensure it takes up full width of parent */
     max-width: 100%; /* Ensure it doesn't exceed parent's width */
     height: 100%; /* Ensure it takes up full height of parent */
     max-height: 100%; /* Ensure it doesn't exceed parent's height */
     box-sizing: border-box;
 }
+
 
 .task__date {
     border: none;
@@ -63,6 +67,9 @@
 .status {
     border-right: 1px solid #6e6a6a46;
 }
+.task__buttons{
+    align-items: center;
+}
 .task__buttons button {
     color: white;
     border: none;
@@ -72,15 +79,22 @@
     font-size: 0.8rem;
     flex-grow: 1;
     margin-top: 5px;
- 
+    margin-left: 3px;
+   
+    
 }
 .task_change button{
-    background-color: #939fdd9f;
-    size:5px;
+    background-color: #6064647e;
+    /* size:2px; */
+    float: right;
+    display: inline;
+    padding: 0.2rem 0.25rem;
+    display: inline;
+    
 
 }
 .task_change button:hover{
-    background-color: #939fddd0;
+    background-color: #606464b7;
 }
 .status button{
     background-color: #34b191;
@@ -100,6 +114,9 @@
     font-family: "Material Symbols Outlined";
     font-size: 18px;
 }
-
+/* edit addintional buttens */
+.edited{
+    visibility: hidden;
+}
 
 
