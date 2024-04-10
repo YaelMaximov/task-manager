@@ -10,6 +10,7 @@ var counter=1;
 renderTodoList();
 
 function getAllTodos() {
+
     let xhr = new FXMLHttpRequest();
     let url = "getAllTodos";
     xhr.open('GET', `https://client/${url}`);
@@ -17,6 +18,10 @@ function getAllTodos() {
         console.log(xhr.responseText);
         if (xhr.readyState === 4 && xhr.status === 200) {
             todoList1 = xhr.responseText;
+            if(todoList1.length>0){
+                counter=todoList1.length+1;
+            }
+            
         }
         else if (xhr.readyState === 4 ) {
             alert(xhr.statusText);
@@ -94,8 +99,6 @@ function renderTodoList() {
         filterByKey(filteKey,filteValue);
     }
     let todoListHTML = '';
-    // TODO - GET make get request for all
-    // TODO - focus on inputs should be false
     for (let i = 0; i < todoList1.length; i++) {
         const todoObject = todoList1[i];
         const { idTodo, title, status, date, comments } = todoObject;
@@ -165,10 +168,6 @@ function renderTodoList() {
 }
 
 function displayTaskTemplate() {
-    // let addBtn = document.querySelector(".add-task-btn");
-    // addBtn.disabled = true;
-    // let filterBtns = document.querySelectorAll(".filter-btn");
-    // filterBtns.forEach(btn => { btn.disabled = false; });
     let otherBtns = document.querySelectorAll(".btn_disable");
     otherBtns.forEach(btn => { btn.disabled = true; });
     const html = `
