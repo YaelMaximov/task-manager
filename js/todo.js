@@ -14,7 +14,7 @@ function getAllTodos() {
             todoList1 = xhr.responseText;
         }
         else if (xhr.readyState === 4 ) {
-            document.getElementById('error-todo').textContent = xhr.statusText;
+            alert(xhr.statusText);
 
         }
 
@@ -167,7 +167,7 @@ function deleteTask(taskIndex) {
             renderTodoList();
         }
         else if(xhr.readyState === 4){
-            document.getElementById('error-todo').textContent = xhr.statusText;
+            alert(xhr.statusText);
 
         }
     });
@@ -216,8 +216,7 @@ function editTask(taskIndex, status) {
             renderTodoList();
         }
         else if (xhr.readyState === 4) {
-            document.getElementById('error-todo').textContent = xhr.statusText;
-
+            alert(xhr.statusText);
         }
     });
     xhr.send(task);
@@ -253,7 +252,7 @@ function taskIsDefined() {
                 renderTodoList();
             }
             else if (xhr.readyState === 4) {
-                document.getElementById('error-todo').textContent = xhr.statusText;
+                alert(xhr.statusText);
 
             }
         });
@@ -287,7 +286,7 @@ function taskInProgress(taskIndex) {
             renderTodoList();
         }
         else if (xhr.readyState === 4) {
-            document.getElementById('error-todo').textContent = xhr.statusText;
+            alert(xhr.statusText);
 
         }
     });
@@ -319,7 +318,7 @@ function taskDone(taskIndex) {
             renderTodoList();
         }
         else if (xhr.readyState === 4) {
-            document.getElementById('error-todo').textContent = xhr.statusText;
+            alert(xhr.statusText);
 
         }
     });
