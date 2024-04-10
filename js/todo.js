@@ -63,14 +63,14 @@ function renderTodoList() {
                 </div>
                 <div class='task__details'>
                 <div class="task__buttons task_change">
-                <button class="delete" onclick="deleteTask(${idTodo})">
+                <button class="delete" style="visibility: visible" onclick="deleteTask(${idTodo})">
                     <span class="material-symbols-outlined">
                         delete
                     </span>
                     <!-- <span>delete</span> -->
                 </button>
 
-                <button class="edit" onclick="openEdit(${idTodo})">
+                <button class="edit" style="visibility: visible" onclick="openEdit(${idTodo})">
                     <span class="material-symbols-outlined">
                         edit
                     </span>
@@ -124,14 +124,14 @@ function displayTaskTemplate() {
   
             <div class='task__details'>
             <div class="task__buttons task_change">
-            <button title="delete" class="delete" onclick="deleteTask()">
+            <button title="delete" style="visibility: hidden" class="delete" onclick="deleteTask()">
                 <span class="material-symbols-outlined">
                     delete
                 </span>
                 <!-- <span>delete</span> -->
             </button>
 
-            <button title="edit" class="edit" onclick="openEdit()">
+            <button title="edit" style="visibility: hidden" class="edit" onclick="openEdit()">
                 <span class="material-symbols-outlined">
                     edit
                 </span>
@@ -249,6 +249,10 @@ function taskIsDefined() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 todoList1.push(task);
                 findClass.classList.remove('current');
+                // editBtn = findClass.querySelector(".edit");
+                // deleteBtn = findClass.querySelector(".delete");
+                // editBtn.style.visibility = "visible";
+                // deleteBtn.style.visibility = "visible";
                 renderTodoList();
             }
             else if (xhr.readyState === 4) {
