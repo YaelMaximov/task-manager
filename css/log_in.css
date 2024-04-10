@@ -2,8 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-     /* Replace 'background.jpg' with your background image */
-    /* background-image: url('../images/To-do-lists-banner.jpg'); */
+    background-color: #1e1e1e; 
     background-size: cover;
     display: flex;
     justify-content: center;
@@ -55,7 +54,7 @@ body {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color:#fc9d44;
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -65,7 +64,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #ca7c32;
 }
 
 p {

@@ -5,85 +5,9 @@ var todoList1 = [];
 var unfiltered=true;
 var filteKey;
 var filteValue;
-var counter=1;
 
 renderTodoList();
-
-function getAllTodos() {
-
-    let xhr = new FXMLHttpRequest();
-    let url = "getAllTodos";
-    xhr.open('GET', `https://client/${url}`);
-    xhr.addEventListener('load', (response) => {
-        console.log(xhr.responseText);
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            todoList1 = xhr.responseText;
-            if(todoList1.length>0){
-                counter=todoList1.length+1;
-            }
-            
-        }
-        else if (xhr.readyState === 4 ) {
-            alert(xhr.statusText);
-
-        }
-        
-
-    });
-    xhr.send("");
-};
-// filters:
-// filter all defined
-// filter all in progress
-// filter all done
-
-function filterByKey(key,value){
-    let xhr = new FXMLHttpRequest();
-    let url = "getTodoByKey";
-    xhr.open('GET', `https://client/${url}`);
-    // let filter=[key,value];
-    xhr.addEventListener('load', (response) => {
-        console.log(xhr.responseText);
-        if (xhr.readyState === 4 && xhr.status === 200) {
-            todoList1 = xhr.responseText;
-            // temp = xhr.responseText;
-            // let todoTemp=[];
-            // console.log(temp);
-            // todoList1.forEach(task => temp.forEach(t => {
-            //     if(task.idTodo===t.idTodo){
-            //         todoTemp.push(task);
-            //     }
-            // }));
-            // todoList1=todoTemp;
-            // console.log(todoList1);
-            let addBtn = document.querySelector(".add-task-btn");
-            if(key="date"){
-                let dateBtn = document.querySelector(".date-filter");
-                dateBtn.value="";
-            }
-            if(value!="Defined")
-            { 
-                addBtn.style.visibility = "hidden";
-            }
-            else{
-                addBtn.style.visibility = "visible";
-            }
-        }
-        else if (xhr.readyState === 4) {
-            alert(xhr.statusText);
-
-        }
-    });
-    xhr.send([key,value]);
-}
-function setFilter(key,value,on_off)
-{
-    filteKey=key;
-    filteValue=value;
-    unfiltered=on_off;
-    renderTodoList();
-}
-// render tasks
+// render tasks-can render tasks by filter
 function renderTodoList() {
     // let filterBtns = document.querySelectorAll(".filter-btn");
     // filterBtns.forEach(btn => { btn.disabled = false; });
@@ -167,6 +91,7 @@ function renderTodoList() {
         .innerHTML = todoListHTML;
 }
 
+//------------------add task functions--------------------/
 function displayTaskTemplate() {
     let otherBtns = document.querySelectorAll(".btn_disable");
     otherBtns.forEach(btn => { btn.disabled = true; });
@@ -224,8 +149,130 @@ function displayTaskTemplate() {
     `;
     document.querySelector('.todo-container').innerHTML += html;
 }
+// for individual tasks:
+// event listener - click defined
+function taskIsDefined() {
+    let findClass = document.querySelector(".current");
+    if (findClass) {
+        let inputs = findClass.querySelector(".inputs").checkValidity();
+        if(!inputs){
+            alert("type inputs before save");
+            return;
+        }
+        let xhr = new FXMLHttpRequest();
+        let url = "addTodo";
+        let titleV = findClass.querySelector(".task__title").value;
+        let dateV = findClass.querySelector(".task__date").value;
+        let commentsV = findClass.querySelector(".task__text").value;
+        let maxId=0;
+        if(todoList1.length>0)
+        {
+            let list=todoList1.map(task => task.idTodo);
+            maxId=Math.max(...list);
+        }
+       
+
+        xhr.open('POST', `https://client/${url}`);
+        let task = {
+            idTodo: maxId+1,
+            title: titleV,
+            status: "Defined",
+            date: dateV,
+            comments: commentsV
+        }
+        xhr.addEventListener('load', (response) => {
+            console.log(xhr.responseText);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                todoList1.push(task);
+                findClass.classList.remove('current');
+                renderTodoList();
+            }
+            else if (xhr.readyState === 4) {
+                alert(xhr.statusText);
+
+            }
+        });
+        xhr.send(task);
+
+    }
+
+}
 
 
+
+//------------------get all tasks---------------------------/
+function getAllTodos() {
+
+    let xhr = new FXMLHttpRequest();
+    let url = "getAllTodos";
+    xhr.open('GET', `https://client/${url}`);
+    xhr.addEventListener('load', (response) => {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            todoList1 = xhr.responseText;
+            
+        }
+        else if (xhr.readyState === 4 ) {
+            alert(xhr.statusText);
+
+        }
+        
+
+    });
+    xhr.send("");
+};
+
+
+
+//------------------filter tasks function------------------/
+function filterByKey(key,value){
+    let xhr = new FXMLHttpRequest();
+    let url = "getTodoByKey";
+    xhr.open('GET', `https://client/${url}`);
+    // let filter=[key,value];
+    xhr.addEventListener('load', (response) => {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            todoList1 = xhr.responseText;
+            // temp = xhr.responseText;
+            // let todoTemp=[];
+            // console.log(temp);
+            // todoList1.forEach(task => temp.forEach(t => {
+            //     if(task.idTodo===t.idTodo){
+            //         todoTemp.push(task);
+            //     }
+            // }));
+            // todoList1=todoTemp;
+            // console.log(todoList1);
+            let addBtn = document.querySelector(".add-task-btn");
+            if(key="date"){
+                let dateBtn = document.querySelector(".date-filter");
+                dateBtn.value="";
+            }
+            if(value!="Defined")
+            { 
+                addBtn.style.visibility = "hidden";
+            }
+            else{
+                addBtn.style.visibility = "visible";
+            }
+        }
+        else if (xhr.readyState === 4) {
+            alert(xhr.statusText);
+
+        }
+    });
+    xhr.send([key,value]);
+}
+function setFilter(key,value,on_off)
+{
+    filteKey=key;
+    filteValue=value;
+    unfiltered=on_off;
+    renderTodoList();
+}
+
+//------------------delete task function------------------/
 // event listener - delete task
 function deleteTask(taskIndex) {
     console.log(taskIndex);
@@ -245,6 +292,8 @@ function deleteTask(taskIndex) {
     xhr.send(taskIndex);
 
 }
+
+//-----------------edit task functions-------------------/
 // event listener - edit task
 function openEdit(taskIndex) {
     // at the end, send PUT to DB
@@ -294,48 +343,9 @@ function editTask(taskIndex, status) {
 
 }
 
-// for individual tasks:
-// event listener - click defined
-function taskIsDefined() {
-    let findClass = document.querySelector(".current");
-    if (findClass) {
-        let inputs = findClass.querySelector(".inputs").checkValidity();
-        if(!inputs){
-            alert("type inputs before save");
-            return;
-        }
-        let xhr = new FXMLHttpRequest();
-        let url = "addTodo";
-        let titleV = findClass.querySelector(".task__title").value;
-        let dateV = findClass.querySelector(".task__date").value;
-        let commentsV = findClass.querySelector(".task__text").value;
 
-        xhr.open('POST', `https://client/${url}`);
-        let task = {
-            idTodo: counter,
-            title: titleV,
-            status: "Defined",
-            date: dateV,
-            comments: commentsV
-        }
-        xhr.addEventListener('load', (response) => {
-            console.log(xhr.responseText);
-            if (xhr.readyState === 4 && xhr.status === 200) {
-                todoList1.push(task);
-                counter++;
-                findClass.classList.remove('current');
-                renderTodoList();
-            }
-            else if (xhr.readyState === 4) {
-                alert(xhr.statusText);
+//-----------------status handle-------------------------------/
 
-            }
-        });
-        xhr.send(task);
-
-    }
-
-}
 // event listener - click inprogress
 function taskInProgress(taskIndex) {
     let className = ".id_" + taskIndex;
@@ -402,5 +412,3 @@ function taskDone(taskIndex) {
 }
 
 
-
-// TODO - onload call render which calls GET for all todos of user using FXML object
