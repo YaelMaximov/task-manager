@@ -96,10 +96,11 @@
 .task_change button:hover{
     background-color: #606464b7;
 }
-.status button{
+/* .status button{
     background-color: #34b191;
     margin-top: 10px;
-}
+
+} */
 
 .task__buttons button:last-child {
     margin-right: 0;
@@ -118,11 +119,16 @@
 .edited{
     visibility: hidden;
 }
-/* .edit{
-    visibility: hidden;
+
+
+.defined {
+    background-color:#fc9d44;
 }
-.delete{
-    visibility: hidden;
-} */
+.in-progress {
+    background-color: #2ec485;
+}
+.done {
+    background-color:#ff6392;
+}
 
 

@@ -1,21 +1,19 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-color: #f5f5f5;
-    /* Light gray background */
-    color: #333;
-    /* Dark gray text color */
+    background-color: #1e1e1e; /* Dark background */
+    color: #d4d4d4; /* Light text color */
 }
 
 .container {
     margin-left: 100px;
     padding: 0 20px;
     display: flex;
+    /* Dark background */
 }
 
 .header {
-    background-color: #035e47;
-    /* Blue header background */
+    background-color: #20886e; /* Darker blue header background */
     color: #fff;
     /* White text color */
     padding: 20px 0;
@@ -30,14 +28,10 @@ body {
 }
 
 .filters-section {
-    background-color: #fff;
-    /* White background */
-    border-bottom: 1px solid #ccc;
-    /* Light gray border bottom */
+    background-color: #2a2a2a; /* Darker gray background */
+    border-bottom: 1px solid #555; /* Dark gray border bottom */
     padding: 20px 0;
     display: flex;
-    /* align-items: center; */
-    /* Align items to the center vertically */
 }
 
 .filters-title {
@@ -45,6 +39,7 @@ body {
     font-size: 30px;
     margin: 0 10px 0 0;
     display: inline;
+    color: #fff; /* White text color */
 }
 
 .add-task-btn {
@@ -52,9 +47,10 @@ body {
     font-size: 50px;
     border-radius: 5px;
     cursor: pointer;
-    float:right;
+    float: right;
+    background-color: #036f54; /* Darker blue background */
+    color: #fff; /* White text color */
 }
-
 
 .filter-btn {
     background-color: #30b694;
@@ -72,13 +68,13 @@ body {
 /* Hover effect for the Add Task button */
 .add-task-btn:hover {
     background-color: #20886e; /* Darker background color on hover */
-    color: #fff; /* Change text color to white on hover */
 }
 
 /* Hover effect for the filter buttons */
 .filter-btn:hover {
     background-color: #1c8470; /* Darker background color on hover */
 }
+
 .todo-container {
     display: flex;
     flex-wrap: wrap;
@@ -86,24 +82,37 @@ body {
     margin: 20px;
     padding: 20px;
     border-radius: 10px;
+     /* Darker gray background */
 }
 
 .task {
     flex: 0 0 calc(33.33% - 20px); /* Set the width of each task to 1/3 of the container minus the gap */
     padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
+    background-color: #333; /* Dark background for tasks */
+    border: 1px solid #555; /* Dark gray border */
     border-radius: 5px;
+    color: #fff; /* White text color */
 }
 
 #defined-border {
-    border-color: #df812a;
+    border: 3px solid  #fc9d44;
 }
 
 #in-progress-border {
-    border-color: #1c8470;
+    border: 3px solid  #2ec485;
 }
 
 #done-border {
-    border-color: #6e0707;
+    border: 3px solid #ff6392;
+}
+
+
+.defined-filter {
+    background-color:#fc9d44;
+}
+.in-progress-filter {
+    background-color: #2ec485;
+}
+.done-filter {
+    background-color:#ff6392;
 }

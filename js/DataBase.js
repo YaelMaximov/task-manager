@@ -13,7 +13,7 @@ class DataBase {
      * @returns whether the user exists or not
      */
     userExist(username) {
-        if(localStorage.getItem("users") === null){
+        if(localStorage.getItem("users")===null || localStorage.getItem("users")==="" ){
             return false;
         }
 
@@ -77,6 +77,9 @@ class DataBase {
      */
     login(username) {
         localStorage.setItem('currentUser', JSON.stringify(username));
+    }
+    logout(){
+        localStorage.setItem('currentUser', null);
     }
 
     /**

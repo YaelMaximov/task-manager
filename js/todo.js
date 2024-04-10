@@ -5,6 +5,7 @@ var todoList1 = [];
 var unfiltered=true;
 var filteKey;
 var filteValue;
+var counter=1;
 
 renderTodoList();
 
@@ -105,7 +106,7 @@ function renderTodoList() {
          * 3. done
          * 4. none
          */
-        const color = status === "Defined" ? "defined-border" : status === "In Progress" ? "in-progress-border" : status === "Done" ? "sone-border" : "";
+        const color = status === "Defined" ? "defined-border" : status === "In Progress" ? "in-progress-border" : status === "Done" ? "done-border" : "";
         const html = `
             <div class="task id_${idTodo}" id="${color}" >
                 <div class='task__buttons'>
@@ -215,9 +216,9 @@ function displayTaskTemplate() {
             </span></button>
             </div>
                 <!-- Task details -->
-                <input type="text" class="task__title" placeholder="Title" value="" required>
-                <input type="date" class="task__date" value="" required>
-                <textarea class="task__text" rows="4" title="Task details go here..."></textarea value="">
+                <input type="text" class="task__title inputs" placeholder="Title" value="" required>
+                <input type="date" class="task__date inputs" value="" required>
+                <textarea class="task__text inputs" rows="4" title="Task details go here..."></textarea value="">
             </div>
           
         </div>
@@ -297,12 +298,13 @@ function editTask(taskIndex, status) {
 // for individual tasks:
 // event listener - click defined
 function taskIsDefined() {
-    // let addBtn = document.querySelector(".add-task-btn");
-    // addBtn.disabled = false;
-   
-
     let findClass = document.querySelector(".current");
     if (findClass) {
+        let inputs = findClass.querySelector(".inputs").checkValidity();
+        if(!inputs){
+            alert("type inputs before save");
+            return;
+        }
         let xhr = new FXMLHttpRequest();
         let url = "addTodo";
         let titleV = findClass.querySelector(".task__title").value;
@@ -311,7 +313,7 @@ function taskIsDefined() {
 
         xhr.open('POST', `https://client/${url}`);
         let task = {
-            idTodo: todoList1.length + 1,
+            idTodo: counter,
             title: titleV,
             status: "Defined",
             date: dateV,
@@ -321,6 +323,7 @@ function taskIsDefined() {
             console.log(xhr.responseText);
             if (xhr.readyState === 4 && xhr.status === 200) {
                 todoList1.push(task);
+                counter++;
                 findClass.classList.remove('current');
                 renderTodoList();
             }

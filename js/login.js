@@ -1,15 +1,16 @@
-document.querySelector('#logInBtn').addEventListener('click', login);
+var logInBtn=document.querySelector('#logInBtn');
+logInBtn.addEventListener('click', login);
 
 function login(e) {
     e.preventDefault();
-    let form = document.getElementById('login-form');
-    //checkValidity function that checks the inputs passed the conditions in the html
-    // let inputs=form.checkValidity();
-    // if(!inputs){
-    //     //if their is a problem with the inputs do not continue
-    //     form.reportValidity();
-    //     return;
-    // }
+    let form = document.getElementById('login');
+    // checkValidity function that checks the inputs passed the conditions in the html
+    let inputs=form.checkValidity();
+    if(!inputs){
+        //if their is a problem with the inputs do not continue
+        form.reportValidity();
+        return;
+    }
     let usernameV = document.getElementById('username').value;
     let passwordV = document.getElementById('password').value;
     
@@ -23,11 +24,9 @@ function login(e) {
         }
         else if(xhr.readyState === 4 && xhr.status === 409){
             document.getElementById('error-login').textContent = "user does not exist";
-
         }
         else if(xhr.readyState === 4 && xhr.status === 401){
             document.getElementById('error-login').textContent = "wrong password";
-
         }
 
     });
