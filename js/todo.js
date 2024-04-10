@@ -13,8 +13,8 @@ function getAllTodos() {
         if (xhr.readyState === 4 && xhr.status === 200) {
             todoList1 = xhr.responseText;
         }
-        else if (xhr.readyState === 4 && xhr.status === 409) {
-            document.getElementById('error-todo').textContent = "Todo list not found";
+        else if (xhr.readyState === 4 ) {
+            document.getElementById('error-todo').textContent = xhr.statusText;
 
         }
 
@@ -75,7 +75,7 @@ function renderTodoList() {
                         edit
                     </span>
                 </button>
-                <button class="edited ok" title="save changes" onclick="editTask(${idTodo},${status})"><span class="material-symbols-outlined">
+                <button class="edited ok" title="save changes" onclick="editTask(${idTodo},'${status}')"><span class="material-symbols-outlined">
                 check_circle
                 </span></button>
                 <button class="edited cancel" title="cancle" onclick="renderTodoList()"><span class="material-symbols-outlined">
@@ -166,7 +166,7 @@ function deleteTask(taskIndex) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             renderTodoList();
         }
-        else {
+        else if(xhr.readyState === 4){
             document.getElementById('error-todo').textContent = xhr.statusText;
 
         }
@@ -192,7 +192,7 @@ function openEdit(taskIndex) {
 
 }
 
-function editTask(taskIndex,status) {
+function editTask(taskIndex, status) {
     let className = ".id_" + taskIndex;
     let findClass = document.querySelector(className);
     let xhr = new FXMLHttpRequest();
@@ -215,7 +215,7 @@ function editTask(taskIndex,status) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             renderTodoList();
         }
-        else if (xhr.readyState === 4 && xhr.status === 401) {
+        else if (xhr.readyState === 4) {
             document.getElementById('error-todo').textContent = xhr.statusText;
 
         }
@@ -252,7 +252,7 @@ function taskIsDefined() {
                 findClass.classList.remove('current');
                 renderTodoList();
             }
-            else if (xhr.readyState === 4 && xhr.status === 401) {
+            else if (xhr.readyState === 4) {
                 document.getElementById('error-todo').textContent = xhr.statusText;
 
             }
@@ -286,7 +286,7 @@ function taskInProgress(taskIndex) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             renderTodoList();
         }
-        else if (xhr.readyState === 4 && xhr.status === 401) {
+        else if (xhr.readyState === 4) {
             document.getElementById('error-todo').textContent = xhr.statusText;
 
         }
@@ -318,7 +318,7 @@ function taskDone(taskIndex) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             renderTodoList();
         }
-        else if (xhr.readyState === 4 && xhr.status === 401) {
+        else if (xhr.readyState === 4) {
             document.getElementById('error-todo').textContent = xhr.statusText;
 
         }
