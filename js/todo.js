@@ -21,6 +21,7 @@ function getAllTodos() {
             alert(xhr.statusText);
 
         }
+        
 
     });
     xhr.send("");
@@ -38,16 +39,22 @@ function filterByKey(key,value){
     xhr.addEventListener('load', (response) => {
         console.log(xhr.responseText);
         if (xhr.readyState === 4 && xhr.status === 200) {
-            // todoList1 = xhr.responseText;
-            temp = xhr.responseText;
-            console.log(temp);
-            let todoTemp=[];
-            todoList1.forEach(task => {if(temp.includes(task)){
-                todoTemp.push(task)
-            }});
-            todoList1=todoTemp;
-            console.log(todoList1);
+            todoList1 = xhr.responseText;
+            // temp = xhr.responseText;
+            // let todoTemp=[];
+            // console.log(temp);
+            // todoList1.forEach(task => temp.forEach(t => {
+            //     if(task.idTodo===t.idTodo){
+            //         todoTemp.push(task);
+            //     }
+            // }));
+            // todoList1=todoTemp;
+            // console.log(todoList1);
             let addBtn = document.querySelector(".add-task-btn");
+            if(key="date"){
+                let dateBtn = document.querySelector(".date-filter");
+                dateBtn.value="";
+            }
             if(value!="Defined")
             { 
                 addBtn.style.visibility = "hidden";
@@ -74,6 +81,8 @@ function setFilter(key,value,on_off)
 function renderTodoList() {
     // let filterBtns = document.querySelectorAll(".filter-btn");
     // filterBtns.forEach(btn => { btn.disabled = false; });
+    let otherBtns = document.querySelectorAll(".btn_disable");
+    otherBtns.forEach(btn => { btn.disabled = false; });
     if(unfiltered)
     {
         let addBtn = document.querySelector(".add-task-btn");
@@ -98,21 +107,21 @@ function renderTodoList() {
          */
         const color = status === "Defined" ? "defined-border" : status === "In Progress" ? "in-progress-border" : status === "Done" ? "sone-border" : "";
         const html = `
-            <div class="task id_${idTodo}" id="${color}">
+            <div class="task id_${idTodo}" id="${color}" >
                 <div class='task__buttons'>
                     <!-- Buttons -->
                     <div class="status">
-                        <button class="defined" title="defined" onclick="taskIsDefined()">
+                        <button class="defined btn_disable" title="defined" onclick="taskIsDefined()">
                             <span class="material-symbols-outlined">
                                 checkbook
                             </span>
                         </button>
-                        <button class="in-progress" title="in-progress" onclick="taskInProgress(${idTodo})"> 
+                        <button class="in-progress btn_disable" title="in-progress" onclick="taskInProgress(${idTodo})"> 
                             <span class="material-symbols-outlined">
                                 network_check
                             </span>
                         </button>
-                        <button class="done" title="done" onclick="taskDone(${idTodo})">
+                        <button class="done btn_disable" title="done" onclick="taskDone(${idTodo})">
                             <span class="material-symbols-outlined">
                                 done
                             </span>
@@ -121,22 +130,22 @@ function renderTodoList() {
                 </div>
                 <div class='task__details'>
                 <div class="task__buttons task_change">
-                <button class="delete" style="visibility: visible" onclick="deleteTask(${idTodo})">
+                <button class="delete btn_disable" style="visibility: visible" onclick="deleteTask(${idTodo})">
                     <span class="material-symbols-outlined">
                         delete
                     </span>
                     <!-- <span>delete</span> -->
                 </button>
 
-                <button class="edit" style="visibility: visible" onclick="openEdit(${idTodo})">
+                <button class="edit btn_disable" style="visibility: visible"  onclick="openEdit(${idTodo})">
                     <span class="material-symbols-outlined">
                         edit
                     </span>
                 </button>
-                <button class="edited ok" title="save changes" onclick="editTask(${idTodo},'${status}')"><span class="material-symbols-outlined">
+                <button class="edited ok btn_disable" title="save changes" onclick="editTask(${idTodo},'${status}')"><span class="material-symbols-outlined">
                 check_circle
                 </span></button>
-                <button class="edited cancel" title="cancle" onclick="renderTodoList()"><span class="material-symbols-outlined">
+                <button class="edited cancel btn_disable" title="cancle" onclick="renderTodoList()"><span class="material-symbols-outlined">
                 cancel
                 </span></button>
                 </div>
@@ -155,10 +164,12 @@ function renderTodoList() {
 }
 
 function displayTaskTemplate() {
-    let addBtn = document.querySelector(".add-task-btn");
-    addBtn.disabled = true;
+    // let addBtn = document.querySelector(".add-task-btn");
+    // addBtn.disabled = true;
     // let filterBtns = document.querySelectorAll(".filter-btn");
     // filterBtns.forEach(btn => { btn.disabled = false; });
+    let otherBtns = document.querySelectorAll(".btn_disable");
+    otherBtns.forEach(btn => { btn.disabled = true; });
     const html = `
         <div class="task current " >
             <div class='task__buttons'>
@@ -286,10 +297,10 @@ function editTask(taskIndex, status) {
 // for individual tasks:
 // event listener - click defined
 function taskIsDefined() {
-    let addBtn = document.querySelector(".add-task-btn");
-    addBtn.disabled = false;
-    // let filterBtns = document.querySelectorAll(".filter-btn");
-    // filterBtns.forEach(btn => { btn.disabled = false; });
+    // let addBtn = document.querySelector(".add-task-btn");
+    // addBtn.disabled = false;
+   
+
     let findClass = document.querySelector(".current");
     if (findClass) {
         let xhr = new FXMLHttpRequest();

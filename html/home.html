@@ -122,12 +122,12 @@
             <section class="filters-section">
                 <div class="container">
                     <h2 class="filters-title">Filters</h2>
-                    <input class="filter-btn date-filter" type="date" class="task__date" onchange="setFilter('date', this.value,false)">
-                    <button class="filter-btn defined-filter" onclick="setFilter('status', 'Defined',false)">Defined</button>
-                    <button class="filter-btn in-progress-filter" onclick="setFilter('status', 'In Progress',false)">In Progress</button>
-                    <button class="filter-btn done-filter" onclick="setFilter('status', 'Done',false)">Done</button>
-                    <button class="filter-btn clean-filter" onclick="setFilter('status', 'Done',true)">clean filter</button>
-                    <button class="filter-btn add-task-btn" onclick="displayTaskTemplate()"><span class="material-symbols-outlined">
+                    <input class="filter-btn date-filter btn_disable" type="date" class="task__date" onchange="setFilter('date', this.value,false)">
+                    <button class="filter-btn defined-filter btn_disable" onclick="setFilter('status', 'Defined',false)">Defined</button>
+                    <button class="filter-btn in-progress-filter btn_disable" onclick="setFilter('status', 'In Progress',false)">In Progress</button>
+                    <button class="filter-btn done-filter btn_disable" onclick="setFilter('status', 'Done',false)">Done</button>
+                    <button class="filter-btn clean-filter btn_disable" onclick="setFilter('status', 'Done',true)">clean filter</button>
+                    <button class="filter-btn add-task-btn btn_disable" onclick="displayTaskTemplate()"><span class="material-symbols-outlined">
                         add
                     </span></button>
                 </div>
