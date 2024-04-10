@@ -2,6 +2,10 @@
 
 
 var todoList1 = [];
+var unfiltered=true;
+var filteKey;
+var filteValue;
+
 renderTodoList();
 
 function getAllTodos() {
@@ -21,10 +25,64 @@ function getAllTodos() {
     });
     xhr.send("");
 };
+// filters:
+// filter all defined
+// filter all in progress
+// filter all done
 
+function filterByKey(key,value){
+    let xhr = new FXMLHttpRequest();
+    let url = "getTodoByKey";
+    xhr.open('GET', `https://client/${url}`);
+    // let filter=[key,value];
+    xhr.addEventListener('load', (response) => {
+        console.log(xhr.responseText);
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            // todoList1 = xhr.responseText;
+            temp = xhr.responseText;
+            console.log(temp);
+            let todoTemp=[];
+            todoList1.forEach(task => {if(temp.includes(task)){
+                todoTemp.push(task)
+            }});
+            todoList1=todoTemp;
+            console.log(todoList1);
+            let addBtn = document.querySelector(".add-task-btn");
+            if(value!="Defined")
+            { 
+                addBtn.style.visibility = "hidden";
+            }
+            else{
+                addBtn.style.visibility = "visible";
+            }
+        }
+        else if (xhr.readyState === 4) {
+            alert(xhr.statusText);
+
+        }
+    });
+    xhr.send([key,value]);
+}
+function setFilter(key,value,on_off)
+{
+    filteKey=key;
+    filteValue=value;
+    unfiltered=on_off;
+    renderTodoList();
+}
 // render tasks
 function renderTodoList() {
-    getAllTodos();
+    // let filterBtns = document.querySelectorAll(".filter-btn");
+    // filterBtns.forEach(btn => { btn.disabled = false; });
+    if(unfiltered)
+    {
+        let addBtn = document.querySelector(".add-task-btn");
+        addBtn.style.visibility = "visible";
+        getAllTodos();
+    }
+    else{
+        filterByKey(filteKey,filteValue);
+    }
     let todoListHTML = '';
     // TODO - GET make get request for all
     // TODO - focus on inputs should be false
@@ -99,6 +157,8 @@ function renderTodoList() {
 function displayTaskTemplate() {
     let addBtn = document.querySelector(".add-task-btn");
     addBtn.disabled = true;
+    // let filterBtns = document.querySelectorAll(".filter-btn");
+    // filterBtns.forEach(btn => { btn.disabled = false; });
     const html = `
         <div class="task current " >
             <div class='task__buttons'>
@@ -228,6 +288,8 @@ function editTask(taskIndex, status) {
 function taskIsDefined() {
     let addBtn = document.querySelector(".add-task-btn");
     addBtn.disabled = false;
+    // let filterBtns = document.querySelectorAll(".filter-btn");
+    // filterBtns.forEach(btn => { btn.disabled = false; });
     let findClass = document.querySelector(".current");
     if (findClass) {
         let xhr = new FXMLHttpRequest();
@@ -249,10 +311,6 @@ function taskIsDefined() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 todoList1.push(task);
                 findClass.classList.remove('current');
-                // editBtn = findClass.querySelector(".edit");
-                // deleteBtn = findClass.querySelector(".delete");
-                // editBtn.style.visibility = "visible";
-                // deleteBtn.style.visibility = "visible";
                 renderTodoList();
             }
             else if (xhr.readyState === 4) {
@@ -330,9 +388,6 @@ function taskDone(taskIndex) {
 
 }
 
-// filters:
-// filter all defined
-// filter all in progress
-// filter all done
+
 
 // TODO - onload call render which calls GET for all todos of user using FXML object

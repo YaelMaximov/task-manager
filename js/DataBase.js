@@ -167,9 +167,11 @@ class DataBase {
 
         // Parse the userInfo JSON
         const usersInfo = JSON.parse(usersInfoJSON);
+        username = JSON.parse(username);
 
         // Find the user with the given username
         const user = usersInfo.find(user => user.username === username);
+        
 
         if (!user) {
             console.log("User not found.");
@@ -177,7 +179,7 @@ class DataBase {
         }
 
         // Filter todos based on the provided key and value
-        const filteredTodos = user.todo.filter(todo => todo.data[0] === data[1]);
+        const filteredTodos = user.todo.filter(todo => todo[data[0]] === data[1]);
         // TODO - make sure the filter filters by the value (data[1]) of key (data[0])
         return filteredTodos;
     }
