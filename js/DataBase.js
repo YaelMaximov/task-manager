@@ -2,9 +2,7 @@ class DataBase {
     /**
      * Empty constructor for DataBase
      */
-    constructor() {
-        // TODO - if there is nothing in local storage, we should create it!!
-    }
+    constructor() { }
 
     /**
      * GET method:
@@ -13,12 +11,12 @@ class DataBase {
      * @returns whether the user exists or not
      */
     userExist(username) {
-        if(localStorage.getItem("users")===null || localStorage.getItem("users")==="" ){
+        if (localStorage.getItem("users") === null || localStorage.getItem("users") === "") {
             return false;
         }
 
         let userList = JSON.parse(localStorage.getItem('users'));
-        return (userList.includes(username))? true: false;
+        return (userList.includes(username)) ? true : false;
     }
 
     /**
@@ -32,7 +30,7 @@ class DataBase {
         if (usersInfoJSON) {
             usersInfo = JSON.parse(usersInfoJSON);
             const user = usersInfo.find(user => user.username == credentials[0] && user.password == credentials[1]);
-            return user? true: false;
+            return user ? true : false;
         }
     }
 
@@ -43,7 +41,7 @@ class DataBase {
      */
     signUp(newUser) {
         let usersJSON = localStorage.getItem('users');
-        let users; 
+        let users;
         if (usersJSON) {
             // If users list exists in local storage, parse it
             users = JSON.parse(usersJSON);
@@ -54,7 +52,7 @@ class DataBase {
             users = [newUser.username];
         }
         localStorage.setItem('users', JSON.stringify(users));
-    
+
         // Retrieve existing users info list from local storage
         let usersInfoJSON = localStorage.getItem('usersInfo');
         let usersInfo;
@@ -69,8 +67,7 @@ class DataBase {
         // Save the updated user list back to local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));
     }
-    
-    // TODO - do we need to check if user is actually in the database? might be in server that it is checked but that might not be right...
+
     /**
      * POST
      * @param {*} username 
@@ -78,7 +75,7 @@ class DataBase {
     login(username) {
         localStorage.setItem('currentUser', JSON.stringify(username));
     }
-    logout(){
+    logout() {
         localStorage.setItem('currentUser', null);
     }
 
@@ -174,7 +171,7 @@ class DataBase {
 
         // Find the user with the given username
         const user = usersInfo.find(user => user.username === username);
-        
+
 
         if (!user) {
             console.log("User not found.");
@@ -183,10 +180,9 @@ class DataBase {
 
         // Filter todos based on the provided key and value
         const filteredTodos = user.todo.filter(todo => todo[data[0]] === data[1]);
-        // TODO - make sure the filter filters by the value (data[1]) of key (data[0])
         return filteredTodos;
     }
-    
+
     /**
      * PUT
      * Function to update a todo by id
@@ -227,7 +223,6 @@ class DataBase {
 
         // Update the todo with the provided updatedTodo
         user.todo[todoIndex] = { ...user.todo[todoIndex], ...updatedTodo };
-        // TODO - make sure this notation for updating todo (tasks) works!!!
 
         // Update userInfo in local storage
         localStorage.setItem('usersInfo', JSON.stringify(usersInfo));

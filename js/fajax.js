@@ -47,7 +47,6 @@ class FXMLHttpRequest {
         this.onreadystatechange(response);
     }
 
-    // TODO - look at what this means ??
     /**
      * There is a callback function that we get from the client code
      * @param {*} type 

@@ -140,10 +140,8 @@ class Server {
             // return req;
         }
         else if (checkWhatUrl(req.url) === 'getAllTodos') {
-            this.response  = this.dateBase.getAllTodos();
-            //|| this.response == []
-            if (this.response ) {
-                // TODO - check that this only works when response is an empty array [] or has todos inside it
+            this.response = this.dateBase.getAllTodos();
+            if (this.response) {
                 req.status = 200;
                 req.statusText = "OK";
                 req.responseText = this.response;
@@ -160,13 +158,12 @@ class Server {
                 //data=[key, value]
                 // key - attribute in a task (date, status...)
                 // value - specific instance of key
-                this.response  = this.dateBase.getTodoByKey(req.data);
+                this.response = this.dateBase.getTodoByKey(req.data);
                 if (this.response) {
                     req.status = 200;
                     req.statusText = "OK";
                     req.responseText = this.response;
-                    // TODO - look at returned filtered todo list in console
-                    console.log(this.response); 
+                    console.log(this.response);
                 }
                 else {
                     req.status = 401;
@@ -199,7 +196,7 @@ class Server {
         if (checkWhatUrl(req.url) === 'updateTodo') {
             if (req.data) {
                 // data=updated todo object,it will find the idTodo from the object
-                this.response  = this.dateBase.updateTodo(req.data);
+                this.response = this.dateBase.updateTodo(req.data);
                 if (this.response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {
@@ -241,7 +238,7 @@ class Server {
         if (checkWhatUrl(req.url) === 'deleteTodo') {
             if (req.data) {
                 //data=the idTodo
-                this.response  = this.dateBase.deleteTodo(req.data);
+                this.response = this.dateBase.deleteTodo(req.data);
                 if (this.response) {
                     // req.readyState = 4;
                     if (this.response === "todo id not found") {
