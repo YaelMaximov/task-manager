@@ -1,6 +1,5 @@
 
 
-
 var todoList1 = [];
 var unfiltered=true;
 var filteKey;
