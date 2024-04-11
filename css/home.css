@@ -116,3 +116,7 @@ body {
 .done-filter {
     background-color:#ff6392;
 }
+
+.nav-link {
+    text-decoration: none;
+}

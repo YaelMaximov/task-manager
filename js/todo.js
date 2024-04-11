@@ -1,4 +1,5 @@
-
+// ----------------------- display username -------------------------
+document.querySelector(".username-display").textContent = localStorage.getItem("currentUser");
 
 var todoList1 = [];
 var unfiltered=true;
