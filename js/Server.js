@@ -124,7 +124,6 @@ class Server {
     get(req) {
         req.readyState = 3; // processing req
         if (checkWhatUrl(req.url) === 'userExist') {
-            // TODO - See if we need to keep userExist methods / checks
             // if (req.data) {
             //     //data=username
             //     response = dateBase.userExist(req.data);

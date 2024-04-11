@@ -31,6 +31,6 @@ const app = {
         const contentDiv = document.querySelector('#content');
         contentDiv.replaceChildren(openTemplate.cloneNode(true));
 
-    }
+    } 
 }
 document.addEventListener('DOMContentLoaded', app.init);
