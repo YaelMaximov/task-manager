@@ -34,6 +34,9 @@ class DataBase {
         }
     }
 
+    getCurrentUser() {
+        return localStorage.getItem("currentUser");
+    }
     /**
      * POST method:
      * Add a new user to the DB

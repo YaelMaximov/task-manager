@@ -176,6 +176,19 @@ class Server {
             // req.readyState = 4; // finished
             // return req;
         }
+        else if(checkWhatUrl(req.url) == 'getCurrentUser') {
+            this.response = this.dateBase.getCurrentUser();
+            if (this.response) {
+                req.status = 200;
+                req.statusText = "OK";
+                req.responseText = this.response;
+                console.log(this.response);
+            }
+            else {
+                req.status = 404;
+                req.statusText = "Not Found";
+            }
+        } 
         else {
             req.status = 404;
             req.statusText = "Not Found";

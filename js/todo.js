@@ -1,6 +1,4 @@
 // ----------------------- display username -------------------------
-document.querySelector(".username-display").textContent = localStorage.getItem("currentUser");
-
 var todoList1 = [];
 var unfiltered=true;
 var filteKey;
@@ -11,6 +9,23 @@ renderTodoList();
 function renderTodoList() {
     // let filterBtns = document.querySelectorAll(".filter-btn");
     // filterBtns.forEach(btn => { btn.disabled = false; });
+    let username = document.querySelector(".username-display").textContent;
+    if (!username) {
+        let xhr = new FXMLHttpRequest();
+        const url = "getCurrentUser"
+        xhr.open('GET', `https://client/${url}`);
+        xhr.addEventListener('load', (response) => {
+            console.log(xhr.responseText);
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                username = xhr.responseText;   
+                document.querySelector(".username-display").textContent = username;
+            }
+            else if (xhr.readyState === 4 ) {
+                alert(xhr.statusText);
+            }
+        });
+        xhr.send("");
+    }
     let otherBtns = document.querySelectorAll(".btn_disable");
     otherBtns.forEach(btn => { btn.disabled = false; });
     if(unfiltered)
