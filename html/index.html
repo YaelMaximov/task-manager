@@ -19,7 +19,7 @@
 <body>
     <main>
         <div id="content">
-            <link rel="stylesheet" href="../css/log_in.css">
+            <link rel="stylesheet" href="/css/log_in.css">
             <form id="login" class="container">
                 <div class="login-box">
                     <h2>Login</h2>
@@ -33,21 +33,21 @@
                             <label for="password">Password:</label>
                             <input type="password" id="password" name="password" required>
                         </div>
-                        <button id="logInBtn"  class="form__button" type="submit" data-target="Todo">Log
+                        <button id="logInBtn" class="form__button" type="submit" data-target="Todo">Log
                             In</button>
                     </form>
                     <p>Don't have an account?<a data-target="Sign-Up" class="nav-link" href="#Sign-Up"
                             id="linkCreateAccount">Sign Up</a></p>
                 </div>
-    
+
             </form>
-            <script src="../js/login.js"></script>
+            <script src="/js/login.js"></script>
         </div>
     </main>
 
 
     <template id="Login">
-        <link rel="stylesheet" href="../css/log_in.css">
+        <link rel="stylesheet" href="/css/log_in.css">
         <form id="login" class="container">
             <div class="login-box">
                 <h2>Login</h2>
@@ -61,7 +61,7 @@
                         <label for="password">Password:</label>
                         <input type="password" id="password" name="password" required>
                     </div>
-                    <button id="logInBtn"  class="form__button" type="submit" data-target="Todo">Log
+                    <button id="logInBtn" class="form__button" type="submit" data-target="Todo">Log
                         In</button>
                 </form>
                 <p>Don't have an account?<a data-target="Sign-Up" class="nav-link" href="#Sign-Up"
@@ -69,12 +69,12 @@
             </div>
 
         </form>
-        <script src="../js/login.js"></script>
+        <script src="/js/login.js"></script>
 
     </template>
 
     <template id="Sign-Up">
-        <link rel="stylesheet" href="../css/sign_up.css">
+        <link rel="stylesheet" href="/css/sign_up.css">
 
         <form id="signUp" class="container">
             <div class="signup-box">
@@ -105,68 +105,65 @@
 
             </div>
         </form>
-        <script src="../js/signup.js"></script>
+        <script src="/js/signup.js"></script>
     </template>
 
 
     <template id="Todo">
-        <link rel="stylesheet" href="../css/home.css">
-        <link rel="stylesheet" href="../css/todo.css">
+        <link rel="stylesheet" href="/css/home.css">
+        <link rel="stylesheet" href="/css/todo.css">
         <!-- <link rel="stylesheet" href="../css/todo.css"> -->
 
-        <body>
-            <header class="header">
-                <div class="account">Account
-                    <!-- current username should be here -->
-                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                        person
-                    </span>
-                </div>                    
-                <h3 class="username-display"></h3>
-                <button class="log-out-btn filter-btn">
-                    <a data-target="Login" class="nav-link" href="#Login" 
-                        id="linkCreateAccount">
-                        <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
-                            logout
-                        </span>
-                    </a>
-                </button>
-            </header>
-
-            <section class="filters-section">
-                <div class="container">
-                    <h2 class="filters-title">Filters</h2>
-                    <input class="filter-btn date-filter btn_disable" type="date" class="task__date"
-                        onchange="setFilter('date', this.value,false)">
-                    <button class="filter-btn defined-filter btn_disable"
-                        onclick="setFilter('status', 'Defined',false)">Defined</button>
-                    <button class="filter-btn in-progress-filter btn_disable"
-                        onclick="setFilter('status', 'In Progress',false)">In Progress</button>
-                    <button class="filter-btn done-filter btn_disable"
-                        onclick="setFilter('status', 'Done',false)">Done</button>
-                    <button class="filter-btn clean-filter btn_disable" onclick="setFilter('status', 'Done',true)">clean
-                        filter</button>
-                    <button class="filter-btn add-task-btn btn_disable" onclick="displayTaskTemplate()"><span
-                            class="material-symbols-outlined">
-                            add
-                        </span></button>
-                </div>
-            </section>
-
-            <div class='todo-container'>
-                <div id="error-todo"></div>
-                <!-- Add more tasks as needed -->
+        <header class="header">
+            <div class="account">Account
+                <!-- current username should be here -->
+                <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
+                    person
+                </span>
             </div>
-            <script src="../js/todo.js"></script>
-        </body>
+            <h3 class="username-display"></h3>
+            <button class="log-out-btn filter-btn">
+                <a data-target="Login" class="nav-link" href="#Login" id="linkCreateAccount">
+                    <span viewBox="0 0 512 512" fill="currentColor" class="material-symbols-outlined">
+                        logout
+                    </span>
+                </a>
+            </button>
+        </header>
+
+        <section class="filters-section">
+            <div class="container">
+                <h2 class="filters-title">Filters</h2>
+                <input class="filter-btn date-filter btn_disable" type="date" class="task__date"
+                    onchange="setFilter('date', this.value,false)">
+                <button class="filter-btn defined-filter btn_disable"
+                    onclick="setFilter('status', 'Defined',false)">Defined</button>
+                <button class="filter-btn in-progress-filter btn_disable"
+                    onclick="setFilter('status', 'In Progress',false)">In Progress</button>
+                <button class="filter-btn done-filter btn_disable"
+                    onclick="setFilter('status', 'Done',false)">Done</button>
+                <button class="filter-btn clean-filter btn_disable" onclick="setFilter('status', 'Done',true)">clean
+                    filter</button>
+                <button class="filter-btn add-task-btn btn_disable" onclick="displayTaskTemplate()"><span
+                        class="material-symbols-outlined">
+                        add
+                    </span></button>
+            </div>
+        </section>
+
+        <div class='todo-container'>
+            <div id="error-todo"></div>
+            <!-- Add more tasks as needed -->
+        </div>
+        <script src="/js/todo.js"></script>
     </template>
 
-  
-    <script src="../js/DataBase.js"></script>
-    <script src="../js/fajax.js"></script>
-    <script src="../js/Network.js"></script>
-    <script src="../js/Server.js"></script>
-    <script src="../js/spa.js"></script>
+
+    <script src="/js/DataBase.js"></script>
+    <script src="/js/fajax.js"></script>
+    <script src="/js/Network.js"></script>
+    <script src="/js/Server.js"></script>
+    <script src="/js/spa.js"></script>
 </body>
 
 
